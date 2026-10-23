@@ -11,7 +11,7 @@ SITE = "https://" + DOMAIN
 BRAND = "광명커튼"
 BRAND_EN = "GWANGMYEONG CURTAIN"
 PHONE = "010-8353-5979"
-VER = "202610240100"             # 캐시 갱신용 (사진 · CSS를 바꾸면 숫자 올리기)
+VER = "202610241230"             # 캐시 갱신용 (사진 · CSS를 바꾸면 숫자 올리기)
 TODAY = "2026-10-24"
 BASE_LOCALITY = "광명시"
 
@@ -188,7 +188,7 @@ PRODUCTS = {
 def product_card(key, cls="product-card"):
     p = PRODUCTS[key]
     return (f'                <a href="products.html#{key}" class="{cls}">\n'
-            f'                    <div class="product-img"><img src="{v("images/products/" + key + ".jpg")}" alt="{p["name"]} 실제 시공 사진" loading="lazy"></div>\n'
+            f'                    <div class="product-img"><img src="{v("images/products/" + key + ".jpg")}" alt="{p["name"]} 시공 사진" loading="lazy"></div>\n'
             f'                    <h3>{p["name"]}</h3>\n'
             f'                    <p>{p["short"]}</p>\n'
             f'                </a>\n')

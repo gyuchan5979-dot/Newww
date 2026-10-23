@@ -1,0 +1,112 @@
+"""받은 시공 사진(_build/photos-src/gm-XX.jpg)을 사이트용으로 자르고 줄여서 images/ 에 저장.
+
+실행: python3 _build/photos.py
+- 원본은 위치 정보(EXIF)를 지운 상태로 photos-src 에 보관
+- 남의 상호 · 전화번호 · 모니터 화면처럼 보이면 안 되는 곳은 흐리게 처리
+- 드리움 · 결앤빛 · 런던커튼 사진과 겹치지 않는지 비교해서 확인함 (README 참고)
+"""
+import os
+from PIL import Image, ImageFilter
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, "_build", "photos-src")
+OUT = os.path.join(ROOT, "images")
+
+# 흐림 처리할 영역 (원본 좌표)
+BLUR = {
+    "01": [(1770, 430, 2016, 870),    # 달력 (다른 업체 상호 · 전화번호)
+           (1610, 980, 1860, 1300)],  # 모니터 화면
+}
+
+
+def load(n):
+    im = Image.open(os.path.join(SRC, f"gm-{n}.jpg")).convert("RGB")
+    for box in BLUR.get(n, []):
+        im.paste(im.crop(box).filter(ImageFilter.GaussianBlur(18)), box[:2])
+    return im
+
+
+def fit(im, aspect, box=None, focus=(0.5, 0.5)):
+    """box 안에서 aspect(가로/세로) 비율로 가장 크게 자르기. focus 는 잘라낼 때 기준점"""
+    x0, y0, x1, y1 = box or (0, 0, im.width, im.height)
+    w, h = x1 - x0, y1 - y0
+    if w / h > aspect:
+        nw = round(h * aspect)
+        x0 += round((w - nw) * focus[0]); x1 = x0 + nw
+    else:
+        nh = round(w / aspect)
+        y0 += round((h - nh) * focus[1]); y1 = y0 + nh
+    return im.crop((x0, y0, x1, y1))
+
+
+def save(im, rel, size, quality=80):
+    path = os.path.join(OUT, rel)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    im = im.resize(size, Image.LANCZOS)
+    q = quality
+    while True:
+        im.save(path, "JPEG", quality=q, optimize=True, progressive=True)
+        if os.path.getsize(path) <= 300_000 or q <= 60:
+            break
+        q -= 5
+
+
+# 시공사례: 사례 번호 → [(원본 번호, focus)]  (첫 번째가 대표 사진)
+CASE_PHOTOS = {
+    "01": [("11", (0.5, 0.5)), ("10", (0.5, 0.5))],   # 거실 간접조명 커튼박스 · 아이보리 겉커튼 + 쉬폰
+    "02": [("02", (0.5, 0.5))],                       # 거실 웨이브 겉커튼
+    "03": [("04", (0.5, 0.5))],                       # 침실 암막 웨이브
+    "04": [("05", (0.5, 0.5))],                       # 방 코너 창 그레이 겉커튼 + 쉬폰
+    "05": [("09", (0.5, 0.5))],                       # 거실 화이트 쉬폰 (핀치)
+    "06": [("07", (0.5, 0.5))],                       # 거실 쉬폰 (피아노 · 책장)
+    "07": [("12", (0.5, 0.5))],                       # 공부방 쉬폰
+    "08": [("16", (0.5, 0.5))],                       # 거실 콤비 블라인드
+    "09": [("14", (0.5, 0.5))],                       # 주택 내닫이창 콤비
+    "10": [("08", (0.5, 0.5))],                       # 사무실 콤비 블라인드
+    "11": [("13", (0.5, 0.5))],                       # 침실 알루미늄 블라인드
+    "12": [("15", (0.5, 0.35))],                      # 주방 알루미늄 블라인드 (세로 사진)
+    "13": [("03", (0.5, 0.5))],                       # 복층 커튼월 롤스크린
+    "14": [("01", (0.5, 0.5))],                       # 사무실 코너 롤스크린
+    "15": [("06", (0.5, 0.5))],                       # 쉬폰 웨이브 클로즈업
+}
+
+# 메인 슬라이드 · 페이지 배경 (원본 번호, focus)
+HERO = {
+    "hero-01": ("11", (0.5, 0.55)), "hero-02": ("04", (0.5, 0.5)), "hero-03": ("16", (0.5, 0.5)),
+    "hero-gallery": ("07", (0.5, 0.4)), "hero-products": ("06", (0.5, 0.5)), "hero-areas": ("09", (0.5, 0.45)),
+    "hero-blog": ("12", (0.5, 0.4)), "hero-about": ("10", (0.5, 0.5)), "hero-faq": ("05", (0.5, 0.4)),
+    "hero-inquiry": ("02", (0.5, 0.4)), "hero-cta": ("03", (0.5, 0.5)),
+}
+
+# 제품 사진 (세로 3:4). 사진이 없는 제품은 자리표시 그대로 둠
+PRODUCT = {
+    "linen": ("02", (0.45, 0.5)), "chiffon": ("06", (0.55, 0.5)), "blackout": ("04", (0.7, 0.5)),
+    "combi": ("16", (0.6, 0.5)), "roll": ("03", (0.5, 0.5)),
+}
+
+ABOUT = {"about-01": ("10", (0.35, 0.5)), "about-02": ("14", (0.5, 0.5))}
+
+
+if __name__ == "__main__":
+    cache = {}
+
+    def src(n):
+        if n not in cache:
+            cache[n] = load(n)
+        return cache[n]
+
+    for no, photos in CASE_PHOTOS.items():
+        for k, (n, focus) in enumerate(photos):
+            name = f"cases/case-{no}.jpg" if k == 0 else f"cases/case-{no}-{k + 1}.jpg"
+            im = src(n)
+            if im.height > im.width:      # 세로 사진은 세로 그대로
+                save(fit(im, 3 / 4, focus=focus), name, (1200, 1600))
+            else:
+                save(fit(im, 4 / 3, focus=focus), name, (1600, 1200))
+    for name, (n, focus) in HERO.items():
+        save(fit(src(n), 16 / 9, focus=focus), f"hero/{name}.jpg", (1920, 1080), quality=78)
+    for name, (n, focus) in PRODUCT.items():
+        save(fit(src(n), 3 / 4, focus=focus), f"products/{name}.jpg", (900, 1200))
+    for name, (n, focus) in ABOUT.items():
+        save(fit(src(n), 4 / 5, focus=focus), f"about/{name}.jpg", (1000, 1250))
+    print("photos written")

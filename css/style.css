@@ -106,7 +106,7 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 .hero-slide.is-active img { transform: scale(1); }
 .hero-slide figcaption { position: absolute; right: 120px; bottom: 44px; z-index: 2; font-size: 13px; letter-spacing: .04em; color: rgba(255,255,255,.75); }
 .hero-slide figcaption::before { content: "실제 시공 — "; opacity: .7; }
-.hero-scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,.08) 70%, rgba(0,0,0,.2) 100%); }
+.hero-scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,.08) 70%, rgba(0,0,0,.2) 100%), linear-gradient(to right, rgba(20,28,24,.62) 0%, rgba(20,28,24,.3) 45%, rgba(20,28,24,0) 75%); }
 .hero .hero-content { position: relative; z-index: 2; width: 100%; padding-bottom: 110px; animation: fadeUp 1s var(--ease) both; }
 .hero-eyebrow { font-size: 13px; letter-spacing: .32em; margin-bottom: 28px; opacity: .85; }
 .hero h1 { font-family: var(--font-serif); font-size: clamp(44px, 7.4vw, 104px); font-weight: 500; line-height: 1.18; letter-spacing: -0.045em; margin-bottom: 28px; }
@@ -659,3 +659,4 @@ h1, h2, h3, h4, p { word-break: keep-all; }
 .area-plain h2 { font-family: var(--font-serif); font-size: 22px; font-weight: 500; color: var(--color-ink); margin-bottom: 14px; }
 .area-plain p { font-size: 15px; line-height: 1.9; color: var(--color-muted); }
 .example-flag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .08em; padding: 4px 10px; background: var(--color-sand); color: var(--color-stone); margin-bottom: 12px; }
+.hero h1 .hero-kicker { text-shadow: 0 1px 12px rgba(0,0,0,.45); }

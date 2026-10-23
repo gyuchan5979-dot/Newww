@@ -1,4 +1,4 @@
-# 광명커튼 네이버 수집 요청 URL (총 35개)
+# 광명커튼 네이버 수집 요청 URL (총 51개)
 # 서치어드바이저 > 요청 > 웹 페이지 수집 에 한 줄씩 붙여넣기
 
 ########## 1일차 ##########
@@ -8,6 +8,7 @@ https://gmcurtain.co.kr/
 https://gmcurtain.co.kr/areas.html
 https://gmcurtain.co.kr/inquiry.html
 https://gmcurtain.co.kr/products.html
+https://gmcurtain.co.kr/gallery.html
 https://gmcurtain.co.kr/blog.html
 https://gmcurtain.co.kr/faq.html
 https://gmcurtain.co.kr/about.html
@@ -47,3 +48,22 @@ https://gmcurtain.co.kr/blog-9-choose-gwangmyeong.html
 https://gmcurtain.co.kr/blog-10-quote-check.html
 https://gmcurtain.co.kr/blog-11-winter-window.html
 https://gmcurtain.co.kr/blog-12-curtain-care.html
+
+########## 3일차 ##########
+
+## 시공사례
+https://gmcurtain.co.kr/case-01.html
+https://gmcurtain.co.kr/case-02.html
+https://gmcurtain.co.kr/case-03.html
+https://gmcurtain.co.kr/case-04.html
+https://gmcurtain.co.kr/case-05.html
+https://gmcurtain.co.kr/case-06.html
+https://gmcurtain.co.kr/case-07.html
+https://gmcurtain.co.kr/case-08.html
+https://gmcurtain.co.kr/case-09.html
+https://gmcurtain.co.kr/case-10.html
+https://gmcurtain.co.kr/case-11.html
+https://gmcurtain.co.kr/case-12.html
+https://gmcurtain.co.kr/case-13.html
+https://gmcurtain.co.kr/case-14.html
+https://gmcurtain.co.kr/case-15.html

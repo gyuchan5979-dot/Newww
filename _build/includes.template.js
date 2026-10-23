@@ -23,9 +23,9 @@ var NAV_MENU = [
 /* ✅ 메인 히어로 슬라이드 (사진만 바꾸려면 같은 파일명으로 FTP 업로드)
       caption: 사진 오른쪽 아래에 작게 표시되는 사진 설명 */
 var HOME_HERO_SLIDES = [
-  { img: "images/hero/hero-01.jpg?v=__VER__", caption: "거실 커튼",   alt: "거실 커튼" },
-  { img: "images/hero/hero-02.jpg?v=__VER__", caption: "침실 암막",   alt: "침실 암막 커튼" },
-  { img: "images/hero/hero-03.jpg?v=__VER__", caption: "방 블라인드",  alt: "방 블라인드" }
+  { img: "images/hero/hero-01.jpg?v=__VER__", caption: "거실 · 아이보리 겉커튼 + 쉬폰", alt: "간접조명 거실 아이보리 겉커튼과 화이트 쉬폰 시공 사진" },
+  { img: "images/hero/hero-02.jpg?v=__VER__", caption: "침실 · 암막 웨이브 커튼",     alt: "침실 그레이베이지 암막 커튼 시공 사진" },
+  { img: "images/hero/hero-03.jpg?v=__VER__", caption: "거실 · 그레이 콤비 블라인드", alt: "고층 거실 그레이 콤비 블라인드 시공 사진" }
 ];
 
 /* ✅ 서브 페이지 히어로 (HTML의 data-hero="키" 와 연결)

@@ -14,7 +14,7 @@
 | 문의 폼 | `js/config.js` → `formspreeId` | ✅ xlgvaknw (같은 폼, 메일 제목 `[광명커튼]` 으로 구분) |
 | 이메일 | `js/config.js` → `email` | ✅ wh597979@naver.com |
 | 주소 표기 | `_build/common.py` 의 `BASE_LOCALITY` | ✅ 경기 광명시 |
-| 사진 | 아래 "사진 교체" 참고 | ⚠️ 자리표시용 |
+| 사진 | 아래 "사진" 참고 | ✅ 실제 시공 사진 16장 반영 (제품 3종만 자리표시) |
 
 > **도메인을 바꿀 때**: `_build/common.py` 의 `DOMAIN` 과 `js/config.js` 의 `siteUrl` 을 바꾸고
 > `python3 _build/build.py` 를 실행하세요. 모든 페이지 · sitemap · rss · .htaccess 주소가 같이 바뀝니다.
@@ -28,7 +28,7 @@
    └ 광명과 맞닿은 9개: 구로 · 금천 · 영등포 · 양천 · 강서 · 관악 · 시흥 · 안양 · 부천
 /areas.html                 시공 지역 목록 (그 밖의 서울 · 경기 · 인천은 글로만 표시)
 /blog.html, blog-N-xxx.html 매거진 12편
-/gallery.html               시공사례 (사례가 생길 때까지 검색 제외)
+/gallery.html, case-01~15  시공사례 15개 (실제 사진)
 /products.html              제품 안내 (#linen #chiffon #blackout #combi #wood #honeycomb #roll #motor)
 /about.html  /faq.html  /inquiry.html  /thanks.html  /404.html
 /css/  /js/config.js(★연락처)  /js/includes.js(헤더 · 푸터)  /js/main.js
@@ -89,22 +89,16 @@
 이미 들어 있는 것: 페이지별 title · description · keywords, canonical, OG(카톡 공유 미리보기 이미지),
 구조화 데이터(업체 정보 · FAQ · 게시글 · 경로), sitemap.xml, rss.xml, robots.txt, https · www 통일(.htaccess), 모바일 대응.
 
-## 사진 교체 (가장 먼저 할 일)
+## 사진
 
-지금 사진은 **자리표시용**이고, 사진 위에 파일명과 권장 크기가 적혀 있습니다.
-**같은 파일명으로 FTP에 덮어쓰기**하면 바로 바뀝니다. (장당 300KB 이하 권장)
-
-| 폴더 | 파일 | 권장 크기 |
-|---|---|---|
-| `images/hero/` | hero-01~03.jpg (메인 슬라이드) | 1920×1080 |
-| `images/hero/` | hero-gallery / products / areas / blog / about / faq / inquiry / cta .jpg | 1920×1080 |
-| `images/products/` | linen, chiffon, blackout, combi, wood, honeycomb, roll, motor .jpg | 900×1200 (세로) |
-| `images/about/` | about-01.jpg (상담 모습), about-02.jpg (시공 모습) | 1000×1250 (세로) |
-| `images/og-image.jpg` | 카톡 · SNS 공유 미리보기 (로고 완성본 들어 있음) | 1200×630 |
-
-> 제품 사진은 매거진 글과 지역 페이지에도 같이 쓰입니다. 사진만 바꾸면 전체에 반영돼요.
-> 사진을 바꾼 뒤 예전 사진이 계속 보이면 `_build/common.py` 의 `VER` 숫자를 올리고 다시 생성하세요.
-> 메인 슬라이드 사진 설명(거실 커튼 등)은 `_build/includes.template.js` 의 `HOME_HERO_SLIDES` 에서 바꿉니다.
+- 받은 원본은 `_build/photos-src/gm-XX.jpg` (위치 정보 삭제). 드리움 · 결앤빛 · 런던커튼 사진 479장과 비교해 **겹치는 사진 없음**을 확인했습니다.
+- `python3 _build/photos.py` 를 실행하면 메인 슬라이드 · 페이지 배경 · 제품 · 시공사례 · 브랜드 사진을 원본에서 다시 잘라 만듭니다.
+  (사진 01 의 달력 속 다른 업체 상호 · 전화번호와 모니터 화면은 흐림 처리)
+- **시공사례 15개(case-01~15)** 는 실제 사진이고, 본문은 사진에서 보이는 내용만 적었습니다.
+  지역 · 평수를 알게 되면 `_build/build.py` 의 `CASES` 에서 `space` 를 "광명 철산 · 34평 거실"처럼 바꾸면 지역 검색에 크게 도움이 됩니다.
+- **아직 자리표시인 사진**: 제품 중 우드 블라인드 · 허니콤 블라인드 · 전동 (`images/products/wood.jpg`, `honeycomb.jpg`, `motor.jpg`, 900×1200 세로).
+  사진이 생기면 `photos-src` 에 넣고 `photos.py` 의 `PRODUCT` 에 한 줄 추가하세요.
+- 사진을 바꾼 뒤 예전 사진이 계속 보이면 `_build/common.py` 의 `VER` 숫자를 올리고 다시 생성하세요.
 
 ## 시공사례 추가 (사진이 생기면)
 

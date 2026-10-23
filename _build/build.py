@@ -10,6 +10,9 @@ from common import (SITE, DOMAIN, BRAND, BRAND_EN, PHONE, TODAY, VER, PRODUCTS, 
                     page, business_ld, faq_ld, product_card)
 from areas_data import AREAS, GROUPS, OTHER_AREAS, BY_SLUG as AREA
 from posts_data import POSTS, BY_SLUG as POST
+from photos import PRODUCT as _PHOTO_PRODUCT
+
+PHOTO_PRODUCTS = set(_PHOTO_PRODUCT)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 written = []
@@ -42,7 +45,71 @@ def date_dot(d):
 # 지역 · 평수를 space 에 적으면 지역 검색에 크게 도움이 됩니다.
 # 사례가 하나라도 생기면 메인에 사례 영역이 나타나고 시공사례 페이지가 검색에 노출됩니다.
 # ---------------------------------------------------------------
-CASES = []
+CASES = [
+    dict(no="01", cat="curtain", space="거실", product="겉커튼 + 쉬폰", spec="아이보리 겉커튼 + 화이트 쉬폰 (간접조명 커튼박스 · 이중 레일)", photos=2,
+         title="간접조명 아래 아이보리 겉커튼과 화이트 쉬폰",
+         text="천장 커튼박스에 간접조명이 들어간 거실에 아이보리 겉커튼과 화이트 쉬폰을 이중 레일로 달았습니다. 낮에는 겉커튼을 양옆으로 모아 두고 쉬폰만 닫아 빛을 부드럽게 들이고, 밤에는 겉커튼까지 닫으면 조명이 주름을 따라 은은하게 번집니다. 두 사진은 같은 집 거실입니다.",
+         points=["간접조명과 겹치지 않도록 커튼박스 안쪽에 레일 배치", "겉커튼을 벽 끝까지 모아 열었을 때 창이 넓게 드러나게", "바닥에 살짝 닿는 기장으로 주름 끝을 정돈"],
+         captions=["겉커튼은 열고 쉬폰만 닫았을 때", "겉커튼까지 닫았을 때"]),
+    dict(no="02", cat="curtain", space="거실", product="겉커튼", spec="라이트그레이 결 원단 겉커튼 (웨이브 주름 · 천장 레일)", photos=1,
+         title="천장형 에어컨 아래 라이트그레이 웨이브 커튼",
+         text="천장형 에어컨이 있는 거실 창에 결이 살아 있는 라이트그레이 겉커튼을 웨이브 주름으로 달았습니다. 천장 바로 아래에서 시작해 바닥까지 떨어지도록 맞춰 층고가 높아 보이고, 물결처럼 일정한 주름이 벽 한 면을 차분하게 채웁니다.",
+         points=["천장형 에어컨과 겹치지 않는 레일 위치", "S자 웨이브 레일로 주름 간격을 고르게", "옆 출입문과 간섭이 없도록 레일 길이 조절"]),
+    dict(no="03", cat="curtain", space="침실", product="암막 커튼", spec="그레이베이지 암막 커튼 (웨이브 주름 · 천장 레일)", photos=1,
+         title="빛을 막아 주는 침실 그레이베이지 암막 커튼",
+         text="침대 옆 큰 창에 그레이베이지 암막 커튼을 웨이브 주름으로 달았습니다. 낮에도 커튼을 닫으면 방이 차분하게 어두워져 쉬기 좋고, 두께감 있는 원단이 일정한 주름을 만들어 침실이 정돈돼 보입니다.",
+         points=["천장 바로 아래에 레일을 달아 위쪽 빛샘 줄이기", "창보다 넓게 레일을 빼서 옆으로 새는 빛 줄이기", "바닥 가까이 맞춘 기장"]),
+    dict(no="04", cat="curtain", space="방", product="겉커튼 + 쉬폰", spec="그레이 겉커튼 + 화이트 쉬폰 (코너 창 두 곳 · 이중 레일)", photos=1,
+         title="두 면에 창이 난 방, 그레이 겉커튼과 화이트 쉬폰",
+         text="벽 두 면에 창이 하나씩 있는 방에 창마다 그레이 겉커튼과 화이트 쉬폰을 이중 레일로 달았습니다. 쉬폰만 닫아도 바깥 풍경이 은은하게 비치면서 시선은 흐려지고, 겉커튼을 닫으면 방이 아늑해집니다. 창 아래 공간을 쓸 수 있도록 창틀 조금 아래까지 오는 기장으로 맞췄습니다.",
+         points=["창마다 따로 재서 두 창의 높이와 길이를 맞춤", "창 아래 공간을 살린 짧은 기장", "겉커튼과 쉬폰을 따로 여닫는 이중 레일"]),
+    dict(no="05", cat="curtain", space="거실", product="쉬폰 커튼", spec="화이트 쉬폰 (핀치 주름 · 커튼박스)", photos=1,
+         title="TV 맞은편 거실 창을 채운 화이트 쉬폰",
+         text="TV가 걸린 벽 맞은편 거실 창에 화이트 쉬폰을 나비(핀치) 주름으로 달았습니다. 낮에 쉬폰을 닫아 두면 화면에 비치는 햇빛이 줄고, 거실이 하얀 빛으로 고르게 밝아집니다.",
+         points=["커튼박스 양 끝까지 채운 레일", "두 장이 가운데서 겹치도록 넉넉한 폭", "바닥에서 살짝 띄운 기장으로 청소가 편하게"]),
+    dict(no="06", cat="curtain", space="거실", product="쉬폰 커튼", spec="화이트 쉬폰 (핀치 주름 · 넓은 창)", photos=1,
+         title="피아노와 책장이 있는 거실의 넓은 창, 화이트 쉬폰",
+         text="피아노와 낮은 책장이 놓인 거실의 넓은 창에 화이트 쉬폰을 달았습니다. 창틀 모양이 쉬폰 너머로 은은하게 비치고, 햇빛이 주름 사이로 걸러져 책장 위까지 부드럽게 퍼집니다.",
+         points=["가구 뒤로도 여닫기 편하도록 넉넉한 주름 배수", "천장 몰딩 아래 레일", "넓은 창을 한 번에 덮는 폭"]),
+    dict(no="07", cat="curtain", space="공부방", product="쉬폰 커튼", spec="화이트 쉬폰 (천장 레일)", photos=1,
+         title="책상 앞 눈부심을 덜어 준 공부방 화이트 쉬폰",
+         text="책상이 창 옆에 놓인 공부방에 화이트 쉬폰을 천장 레일로 달았습니다. 쉬폰을 닫으면 강한 햇빛이 부드럽게 퍼져 책상 위가 눈부시지 않고, 방은 밝게 유지됩니다.",
+         points=["천장 레일로 창 위 벽까지 덮어 높아 보이게", "벽 끝에서 끝까지 이어지는 폭", "가볍고 세탁이 쉬운 쉬폰 원단"]),
+    dict(no="08", cat="blind", space="거실", product="콤비 블라인드", spec="그레이 콤비 블라인드 (2분할 · 커튼박스)", photos=1,
+         title="고층 거실 통창에 단 그레이 콤비 블라인드",
+         text="바깥 풍경이 트인 고층 거실 창에 그레이 콤비 블라인드를 두 개로 나눠 달았습니다. 망사 부분을 맞추면 바깥이 비치고, 원단을 겹치면 시선과 햇빛을 함께 가려 줍니다. 차분한 그레이가 원목 바닥과도 잘 어울립니다.",
+         points=["넓은 창은 두 개로 나눠 조작이 가볍게", "커튼박스 안에 깔끔하게 설치", "바닥 가까이 내려오는 길이"]),
+    dict(no="09", cat="blind", space="주택", product="콤비 블라인드", spec="화이트 콤비 블라인드 (내닫이창 3면)", photos=1,
+         title="세 면으로 꺾인 내닫이창에 맞춘 화이트 콤비",
+         text="원목 창틀이 있는 주택의 내닫이창(밖으로 튀어나온 창) 세 면에 화이트 콤비 블라인드를 하나씩 맞춰 달았습니다. 면마다 폭과 높이가 달라 따로 재서 제작했고, 각 창을 따로 올리고 내릴 수 있습니다. 오래 쓰던 커튼과 봉을 떼어 내고 블라인드로 바꾼 교체 시공입니다.",
+         points=["창마다 따로 실측해 세 개를 각각 제작", "창틀 안쪽에 맞춰 원목 틀을 가리지 않게", "기존 커튼 · 커튼봉 철거 후 교체"]),
+    dict(no="10", cat="blind commercial", space="사무실", product="콤비 블라인드", spec="그레이 콤비 블라인드 (긴 창 · 여러 칸)", photos=1,
+         title="길게 이어진 사무실 창의 그레이 콤비 블라인드",
+         text="창대가 길게 이어진 사무실 벽에 그레이 콤비 블라인드를 여러 칸으로 나눠 달았습니다. 오후 햇빛이 비스듬히 들어와도 줄무늬 원단이 한 번 걸러 주고, 앉은 자리 앞 칸만 따로 내릴 수 있습니다.",
+         points=["창틀 칸에 맞춰 여러 개로 나눠 제작", "자리마다 필요한 칸만 조절", "사무실에 어울리는 차분한 그레이"]),
+    dict(no="11", cat="blind", space="침실", product="알루미늄 블라인드", spec="화이트 알루미늄 블라인드 (2분할)", photos=1,
+         title="몰딩 아래 딱 맞춘 안방 알루미늄 블라인드 두 장",
+         text="가로로 긴 안방 창 위 몰딩 바로 아래에 알루미늄 블라인드 두 장을 나란히 달았습니다. 슬랫이 얇아 닫아 두어도 방이 답답해 보이지 않고, 막대를 돌려 각도만 바꾸면 아침 빛을 위쪽으로 돌려 보낼 수 있습니다.",
+         points=["몰딩 선에 맞춰 수평을 잡은 설치", "왼쪽 · 오른쪽을 따로 올리고 내리기", "벽지 톤과 맞춘 밝은 슬랫"]),
+    dict(no="12", cat="blind", space="주방", product="알루미늄 블라인드", spec="화이트 알루미늄 블라인드 (싱크대 앞 창)", photos=1,
+         title="싱크대 앞 창에 맞춘 알루미늄 블라인드",
+         text="싱크대 앞 창에 화이트 알루미늄 블라인드를 창틀 안쪽에 맞춰 달았습니다. 물기와 습기에 강한 알루미늄이라 주방에 잘 맞고, 슬랫을 살짝 열면 바깥 하늘은 보이면서 시선은 가려집니다.",
+         points=["창틀 안쪽에 딱 맞춘 치수", "물기에 강한 알루미늄 슬랫", "슬랫 각도로 빛과 시선 조절"]),
+    dict(no="13", cat="blind commercial", space="복층 공간", product="롤스크린", spec="그레이 롤스크린 (커튼월 통창 · 칸마다 개별)", photos=1,
+         title="층고 높은 복층 공간의 커튼월 칸마다 롤스크린",
+         text="천장이 높은 복층 공간의 커튼월 통창에 칸마다 그레이 롤스크린을 달았습니다. 창틀 칸 크기가 제각각이라 하나씩 재서 만들었고, 위아래 칸을 따로 내릴 수 있어 필요한 만큼만 빛을 가릴 수 있습니다.",
+         points=["창틀 칸마다 따로 실측 · 제작", "위 칸과 아래 칸을 따로 조절", "손이 닿지 않는 위 칸도 체인을 당겨 여닫기"]),
+    dict(no="14", cat="blind commercial", space="사무실", product="롤스크린", spec="아이보리 롤스크린 (코너 창 · 체인 조작)", photos=1,
+         title="코너 창이 있는 사무실 아이보리 롤스크린",
+         text="두 면이 창으로 된 사무실 코너에 아이보리 롤스크린을 창마다 달았습니다. 내리면 햇빛이 부드럽게 걸러져 모니터 눈부심이 줄고, 올리면 창이 깔끔하게 드러납니다.",
+         points=["천장 몰딩에 맞춘 설치 높이", "창마다 따로 올리고 내리는 체인 조작", "사무실에 어울리는 밝은 아이보리"]),
+    dict(no="15", cat="curtain", space="거실", product="쉬폰 커튼", spec="화이트 쉬폰 (웨이브 주름)", photos=1,
+         title="웨이브 주름으로 단 화이트 쉬폰, 가까이에서 본 결",
+         text="거실 창에 화이트 쉬폰을 웨이브 주름으로 달았습니다. 가까이에서 보면 얇은 원단 너머로 창틀이 은은하게 비치고, 전용 레일 덕분에 주름 간격이 처음부터 끝까지 고르게 유지됩니다.",
+         points=["웨이브 전용 레일로 고른 주름 간격", "빛이 고르게 퍼지는 얇은 원단", "천장 레일로 깔끔한 윗선"]),
+]
+
+CASE = {c["no"]: c for c in CASES}
 
 
 def case_card(c, cls="case-card", extra=""):
@@ -124,7 +191,7 @@ def build_index():
 
     cases = ""
     if CASES:
-        picks = CASES[:5]
+        picks = [CASE[n] for n in ("01", "03", "08", "13", "02")]
         cards = "".join(case_card(c, extra=(" wide reveal" if i == 0 else " reveal")) for i, c in enumerate(picks))
         cases = f'''    <!-- ===== 시공사례 ===== -->
     <section class="section">
@@ -202,7 +269,7 @@ def build_index():
     <!-- ===== 브랜드 이야기 ===== -->
     <section class="section bg-paper">
         <div class="container split">
-            <div class="split-img reveal"><img src="{v('images/about/about-01.jpg')}" alt="원단 샘플을 창에 대 보며 상담하는 모습" loading="lazy"></div>
+            <div class="split-img reveal"><img src="{v('images/about/about-01.jpg')}" alt="간접조명 커튼박스에 단 아이보리 겉커튼 시공 사진" loading="lazy"></div>
             <div class="split-text reveal d1">
                 <p class="section-tag">WHY US</p>
                 <h2>멀리 있는 큰 업체보다<br>가까이 있는 한 사람</h2>
@@ -564,7 +631,8 @@ def build_area(a, idx):
     reads = " · ".join(f'<a href="{s}.html">{POST[s]["title"].split(" — ")[0]}</a>' for s in a["posts"])
     pick_cards = "".join(product_card(k) for k in a["picks"])
     nearby = "".join(f'                <a href="{area_file(AREA[s])}">{AREA[s]["name"]}</a>\n' for s in a["nearby"])
-    img = a["picks"][0]
+    # 대표 사진: 실제 사진이 있는 제품 중 첫 번째 (photos.py 의 PRODUCT 에 있는 제품)
+    img = next((k for k in a["picks"] if k in PHOTO_PRODUCTS), "chiffon")
 
     faq_html, lds = "", [business_ld(name=f"{BRAND} - {full}", url=f"{SITE}/{f}",
                                      area={"@type": "Place", "name": full},
@@ -757,7 +825,7 @@ def build_about():
     <!-- 브랜드 소개 문구는 초안입니다. 대표님 이야기(경력, 시작한 계기 등)를 넣으면 더 좋아요. -->
     <section class="section">
         <div class="container split">
-            <div class="split-img reveal"><img src="{v('images/about/about-01.jpg')}" alt="원단 샘플을 들고 상담하는 모습" loading="lazy"></div>
+            <div class="split-img reveal"><img src="{v('images/about/about-01.jpg')}" alt="거실 아이보리 겉커튼과 쉬폰 시공 사진" loading="lazy"></div>
             <div class="split-text reveal d1">
                 <p class="section-tag">OUR STORY</p>
                 <h2>이름에 동네를<br>걸었습니다</h2>
@@ -786,7 +854,7 @@ def build_about():
 
     <section class="section">
         <div class="container split reverse">
-            <div class="split-img reveal"><img src="{v('images/about/about-02.jpg')}" alt="창에 레일을 다는 시공 모습" loading="lazy"></div>
+            <div class="split-img reveal"><img src="{v('images/about/about-02.jpg')}" alt="주택 내닫이창 화이트 콤비 블라인드 시공 사진" loading="lazy"></div>
             <div class="split-text reveal d1">
                 <p class="section-tag">SERVICE AREA</p>
                 <h2>광명을 중심으로<br>서울 · 경기까지</h2>
