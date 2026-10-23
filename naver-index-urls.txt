@@ -1,0 +1,47 @@
+# 광명커튼 네이버 수집 요청 URL (총 33개)
+# 서치어드바이저 > 요청 > 웹 페이지 수집 에 한 줄씩 붙여넣기
+
+########## 1일차 ##########
+
+## 기본 페이지
+https://gmcurtain.co.kr/
+https://gmcurtain.co.kr/areas.html
+https://gmcurtain.co.kr/inquiry.html
+https://gmcurtain.co.kr/products.html
+https://gmcurtain.co.kr/blog.html
+https://gmcurtain.co.kr/faq.html
+https://gmcurtain.co.kr/about.html
+
+## 광명 동네
+https://gmcurtain.co.kr/area-gwangmyeong.html
+https://gmcurtain.co.kr/area-cheolsan.html
+https://gmcurtain.co.kr/area-haan.html
+https://gmcurtain.co.kr/area-soha.html
+https://gmcurtain.co.kr/area-newtown.html
+https://gmcurtain.co.kr/area-iljik.html
+https://gmcurtain.co.kr/area-hakon.html
+
+########## 2일차 ##########
+
+## 광명과 맞닿은 지역
+https://gmcurtain.co.kr/area-guro.html
+https://gmcurtain.co.kr/area-geumcheon.html
+https://gmcurtain.co.kr/area-yeongdeungpo.html
+https://gmcurtain.co.kr/area-yangcheon.html
+https://gmcurtain.co.kr/area-gangseo.html
+https://gmcurtain.co.kr/area-gwanak.html
+https://gmcurtain.co.kr/area-siheung.html
+https://gmcurtain.co.kr/area-anyang.html
+https://gmcurtain.co.kr/area-bucheon.html
+
+## 매거진
+https://gmcurtain.co.kr/blog-1-newtown-move-in.html
+https://gmcurtain.co.kr/blog-2-old-apt-replace.html
+https://gmcurtain.co.kr/blog-3-highrise-window.html
+https://gmcurtain.co.kr/blog-4-curtain-length.html
+https://gmcurtain.co.kr/blog-5-blackout-guide.html
+https://gmcurtain.co.kr/blog-6-blind-compare.html
+https://gmcurtain.co.kr/blog-7-window-direction.html
+https://gmcurtain.co.kr/blog-8-no-drill.html
+https://gmcurtain.co.kr/blog-9-choose-gwangmyeong.html
+https://gmcurtain.co.kr/blog-10-quote-check.html

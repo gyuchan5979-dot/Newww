@@ -13,14 +13,14 @@ KO = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
 SERIF = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
 FORCE = "--force" in sys.argv
 
-NAVY = (28, 38, 51)
-BRASS = (184, 149, 94)
+INK = (34, 48, 43)
+AMBER = (224, 164, 88)
 
 TONES = [  # (위, 아래) 그라데이션
-    ((122, 116, 104), (74, 72, 68)),
-    ((104, 112, 120), (58, 66, 76)),
-    ((138, 126, 108), (86, 78, 66)),
-    ((96, 104, 98), (56, 62, 60)),
+    ((128, 122, 104), (78, 76, 66)),
+    ((100, 112, 104), (56, 66, 60)),
+    ((142, 128, 104), (88, 78, 62)),
+    ((112, 106, 96), (64, 60, 56)),
 ]
 
 IMAGES = [
@@ -36,8 +36,6 @@ IMAGES = [
     ("hero/hero-faq.jpg", (1920, 1080), "FAQ 배경"),
     ("hero/hero-inquiry.jpg", (1920, 1080), "견적문의 배경"),
     ("hero/hero-cta.jpg", (1920, 1080), "하단 상담 배경"),
-    ("before-after/before-slide.jpg", (1440, 1122), "BEFORE · 시공 전 (같은 위치 · 같은 구도)"),
-    ("before-after/after-slide.jpg", (1440, 1122), "AFTER · 시공 후 (같은 위치 · 같은 구도)"),
     ("about/about-01.jpg", (1000, 1250), "브랜드 사진 1 · 상담 모습"),
     ("about/about-02.jpg", (1000, 1250), "브랜드 사진 2 · 시공 모습"),
     ("products/linen.jpg", (900, 1200), "린넨 커튼"),
@@ -49,7 +47,7 @@ IMAGES = [
     ("products/roll.jpg", (900, 1200), "롤스크린"),
     ("products/motor.jpg", (900, 1200), "전동 커튼 · 블라인드"),
 ]
-# 시공사례 사진은 _build/photos.py 가 실제 사진으로 만듭니다.
+# 시공사례 사진(images/cases/)은 실제 사진이 생기면 직접 넣습니다 (README 참고).
 
 
 def gradient(size, top, bottom):
@@ -92,8 +90,8 @@ def placeholder(rel, size, label, tone):
         x = w - bw - w * 0.06 if is_hero else (w - bw) / 2
         d.text((x, y), t, font=f, fill=c)
         y += d.textbbox((0, 0), t, font=f)[3] + base * 0.025
-    brand = "LONDON CURTAIN · PLACEHOLDER"
-    d.text(((w - d.textlength(brand, font=f_brand)) / 2, h - base * 0.09), brand, font=f_brand, fill=BRASS)
+    brand = "GWANGMYEONG CURTAIN · PLACEHOLDER"
+    d.text(((w - d.textlength(brand, font=f_brand)) / 2, h - base * 0.09), brand, font=f_brand, fill=AMBER)
     img.save(path, "JPEG", quality=72, optimize=True, progressive=True)
     return True
 
@@ -115,5 +113,4 @@ if __name__ == "__main__":
     made = 0
     for i, (rel, size, label) in enumerate(IMAGES):
         made += placeholder(rel, size, label, TONES[i % len(TONES)])
-    made += og_image()
     print(f"{made} images written")

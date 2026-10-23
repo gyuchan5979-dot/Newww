@@ -104,7 +104,7 @@ def head(title, desc, keywords, path, og_image="images/og-image.jpg", og_type="w
     <meta name="keywords" content="{esc(keywords)}">
 '''
     if noindex:
-        out += '    <!-- 예시 페이지: 실제 사진과 내용으로 바꾼 뒤 아래 줄을 지우고 sitemap.xml 에 추가하세요 -->\n'
+        out += '    <!-- 검색 제외 페이지 (시공사례 페이지는 _build/build.py 의 CASES 에 사례가 생기면 자동으로 해제됨) -->\n'
         out += '    <meta name="robots" content="noindex, follow">\n'
     out += f'''    <link rel="canonical" href="{url}">
     <meta property="og:type" content="{og_type}">
