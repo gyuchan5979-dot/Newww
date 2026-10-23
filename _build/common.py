@@ -11,7 +11,7 @@ SITE = "https://" + DOMAIN
 BRAND = "광명커튼"
 BRAND_EN = "GWANGMYEONG CURTAIN"
 PHONE = "010-8353-5979"
-VER = "202610241230"             # 캐시 갱신용 (사진 · CSS를 바꾸면 숫자 올리기)
+VER = "202610241400"             # 캐시 갱신용 (사진 · CSS를 바꾸면 숫자 올리기)
 TODAY = "2026-10-24"
 BASE_LOCALITY = "광명시"
 

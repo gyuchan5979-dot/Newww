@@ -14,7 +14,7 @@
 | 문의 폼 | `js/config.js` → `formspreeId` | ✅ xlgvaknw (같은 폼, 메일 제목 `[광명커튼]` 으로 구분) |
 | 이메일 | `js/config.js` → `email` | ✅ wh597979@naver.com |
 | 주소 표기 | `_build/common.py` 의 `BASE_LOCALITY` | ✅ 경기 광명시 |
-| 사진 | 아래 "사진" 참고 | ✅ 실제 시공 사진 16장 반영 (제품 3종만 자리표시) |
+| 사진 | 아래 "사진" 참고 | ✅ 실제 시공 사진 31장 반영 (전동 제품 사진만 자리표시) |
 
 > **도메인을 바꿀 때**: `_build/common.py` 의 `DOMAIN` 과 `js/config.js` 의 `siteUrl` 을 바꾸고
 > `python3 _build/build.py` 를 실행하세요. 모든 페이지 · sitemap · rss · .htaccess 주소가 같이 바뀝니다.
@@ -28,7 +28,7 @@
    └ 광명과 맞닿은 9개: 구로 · 금천 · 영등포 · 양천 · 강서 · 관악 · 시흥 · 안양 · 부천
 /areas.html                 시공 지역 목록 (그 밖의 서울 · 경기 · 인천은 글로만 표시)
 /blog.html, blog-N-xxx.html 매거진 12편
-/gallery.html, case-01~15  시공사례 15개 (실제 사진)
+/gallery.html, case-01~27  시공사례 27개 (실제 사진)
 /products.html              제품 안내 (#linen #chiffon #blackout #combi #wood #honeycomb #roll #motor)
 /about.html  /faq.html  /inquiry.html  /thanks.html  /404.html
 /css/  /js/config.js(★연락처)  /js/includes.js(헤더 · 푸터)  /js/main.js
@@ -91,12 +91,14 @@
 
 ## 사진
 
-- 받은 원본은 `_build/photos-src/gm-XX.jpg` (위치 정보 삭제). 드리움 · 결앤빛 · 런던커튼 사진 479장과 비교해 **겹치는 사진 없음**을 확인했습니다.
+- 받은 원본은 `_build/photos-src/gm-XX.jpg` (위치 정보 삭제). 드리움 · 결앤빛 · 런던커튼 사진 479장과 하나씩 비교했습니다.
+  - 결앤빛 네이버 블로그용으로 이미 쓴 사진 8장(gm-21~28)은 `photos.py` 의 `EDIT` 에서 **좌우 반전 · 다른 구도로 자르기 · 색감 조정**을 해서 다른 사진으로 보이게 만들었고, 다시 비교해 겹치지 않음을 확인했습니다.
+  - 다른 사이트에 쓴 사진을 새로 넣을 때도 `EDIT` 에 한 줄 추가하면 됩니다.
 - `python3 _build/photos.py` 를 실행하면 메인 슬라이드 · 페이지 배경 · 제품 · 시공사례 · 브랜드 사진을 원본에서 다시 잘라 만듭니다.
-  (사진 01 의 달력 속 다른 업체 상호 · 전화번호와 모니터 화면은 흐림 처리)
-- **시공사례 15개(case-01~15)** 는 실제 사진이고, 본문은 사진에서 보이는 내용만 적었습니다.
+  (달력 속 다른 업체 상호 · 전화번호, 모니터 화면, 화이트보드 손글씨, 서류, 창밖 간판은 흐림 처리)
+- **시공사례 27개(case-01~27)** 는 실제 사진이고, 본문은 사진에서 보이는 내용만 적었습니다.
   지역 · 평수를 알게 되면 `_build/build.py` 의 `CASES` 에서 `space` 를 "광명 철산 · 34평 거실"처럼 바꾸면 지역 검색에 크게 도움이 됩니다.
-- **아직 자리표시인 사진**: 제품 중 우드 블라인드 · 허니콤 블라인드 · 전동 (`images/products/wood.jpg`, `honeycomb.jpg`, `motor.jpg`, 900×1200 세로).
+- **아직 자리표시인 사진**: 제품 중 전동 커튼 · 블라인드 (`images/products/motor.jpg`, 900×1200 세로).
   사진이 생기면 `photos-src` 에 넣고 `photos.py` 의 `PRODUCT` 에 한 줄 추가하세요.
 - 사진을 바꾼 뒤 예전 사진이 계속 보이면 `_build/common.py` 의 `VER` 숫자를 올리고 다시 생성하세요.
 

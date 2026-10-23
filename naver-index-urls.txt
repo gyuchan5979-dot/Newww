@@ -1,4 +1,4 @@
-# 광명커튼 네이버 수집 요청 URL (총 51개)
+# 광명커튼 네이버 수집 요청 URL (총 63개)
 # 서치어드바이저 > 요청 > 웹 페이지 수집 에 한 줄씩 붙여넣기
 
 ########## 1일차 ##########
@@ -67,3 +67,15 @@ https://gmcurtain.co.kr/case-12.html
 https://gmcurtain.co.kr/case-13.html
 https://gmcurtain.co.kr/case-14.html
 https://gmcurtain.co.kr/case-15.html
+https://gmcurtain.co.kr/case-16.html
+https://gmcurtain.co.kr/case-17.html
+https://gmcurtain.co.kr/case-18.html
+https://gmcurtain.co.kr/case-19.html
+https://gmcurtain.co.kr/case-20.html
+https://gmcurtain.co.kr/case-21.html
+https://gmcurtain.co.kr/case-22.html
+https://gmcurtain.co.kr/case-23.html
+https://gmcurtain.co.kr/case-24.html
+https://gmcurtain.co.kr/case-25.html
+https://gmcurtain.co.kr/case-26.html
+https://gmcurtain.co.kr/case-27.html

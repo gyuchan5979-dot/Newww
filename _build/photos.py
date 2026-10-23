@@ -6,7 +6,7 @@
 - 드리움 · 결앤빛 · 런던커튼 사진과 겹치지 않는지 비교해서 확인함 (README 참고)
 """
 import os
-from PIL import Image, ImageFilter
+from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_build", "photos-src")
@@ -16,13 +16,52 @@ OUT = os.path.join(ROOT, "images")
 BLUR = {
     "01": [(1770, 430, 2016, 870),    # 달력 (다른 업체 상호 · 전화번호)
            (1610, 980, 1860, 1300)],  # 모니터 화면
+    "18": [(1600, 630, 1805, 895),    # 화이트보드 손글씨
+           (515, 935, 700, 1130),     # 모니터 화면
+           (90, 1050, 940, 1300)],    # 책상 위 서류 · 달력
+    "32": [(1280, 940, 2016, 1160),   # 창밖 상가 간판
+           (290, 940, 530, 1160)],
 }
+
+
+# 결앤빛 네이버 블로그에 이미 쓴 사진 → 같은 사진으로 보이지 않게 편집
+# mirror: 좌우 반전 / crop: (가로 기준점, 세로 기준점, 남길 비율) / tone: (밝기, 따뜻함)
+EDIT = {
+    "21": dict(mirror=True, crop=(0.25, 0.4, 0.86), tone=(1.04, 1.04)),
+    "22": dict(mirror=True, crop=(0.5, 0.2, 0.84), tone=(1.03, 0.97)),
+    "23": dict(mirror=True, crop=(0.5, 0.3, 0.85), tone=(1.05, 1.03)),
+    "24": dict(mirror=True, crop=(0.3, 0.25, 0.86), tone=(1.04, 1.05)),
+    "25": dict(mirror=True, crop=(0.4, 0.6, 0.85), tone=(1.03, 0.97)),
+    "26": dict(mirror=True, crop=(0.6, 0.5, 0.84), tone=(1.04, 1.03)),
+    "27": dict(mirror=True, crop=(0.35, 0.35, 0.85), tone=(0.98, 0.96)),
+    "28": dict(mirror=True, crop=(0.45, 0.25, 0.86), tone=(1.04, 1.04)),
+}
+
+
+def edit(im, mirror=False, crop=None, tone=None):
+    if crop:
+        fx, fy, k = crop
+        w, h = round(im.width * k), round(im.height * k)
+        x0, y0 = round((im.width - w) * fx), round((im.height - h) * fy)
+        im = im.crop((x0, y0, x0 + w, y0 + h))
+    if mirror:
+        im = ImageOps.mirror(im)
+    if tone:
+        bright, warm = tone
+        im = ImageEnhance.Brightness(im).enhance(bright)
+        r, g, b = im.split()
+        r = r.point(lambda v: min(255, round(v * warm)))
+        b = b.point(lambda v: min(255, round(v / warm)))
+        im = Image.merge("RGB", (r, g, b))
+    return im
 
 
 def load(n):
     im = Image.open(os.path.join(SRC, f"gm-{n}.jpg")).convert("RGB")
     for box in BLUR.get(n, []):
         im.paste(im.crop(box).filter(ImageFilter.GaussianBlur(18)), box[:2])
+    if n in EDIT:
+        im = edit(im, **EDIT[n])
     return im
 
 
@@ -68,6 +107,18 @@ CASE_PHOTOS = {
     "13": [("03", (0.5, 0.5))],                       # 복층 커튼월 롤스크린
     "14": [("01", (0.5, 0.5))],                       # 사무실 코너 롤스크린
     "15": [("06", (0.5, 0.5))],                       # 쉬폰 웨이브 클로즈업
+    "16": [("23", (0.5, 0.5)), ("24", (0.5, 0.5))],   # 부천 거실 블루그레이 겉커튼 + 쉬폰
+    "17": [("25", (0.5, 0.4)), ("26", (0.5, 0.5))],   # 부천 베란다 허니콤
+    "18": [("27", (0.5, 0.45))],                      # 부천 도트 줄무늬 쉬폰
+    "19": [("21", (0.5, 0.5)), ("22", (0.5, 0.4))],   # 마포 거실 웨이브 겉커튼 + 자석 타이백
+    "20": [("28", (0.5, 0.5))],                       # 구로 거실 화이트 쉬폰
+    "21": [("18", (0.5, 0.5))],                       # 고층 서재 콤비
+    "22": [("19", (0.5, 0.5))],                       # 사무실 우드 블라인드
+    "23": [("20", (0.5, 0.5))],                       # 거실 화이트 쉬폰 (천장형 에어컨)
+    "24": [("30", (0.5, 0.5))],                       # 방 쉬폰 + 그레이 겉커튼
+    "25": [("32", (0.5, 0.5))],                       # 사무실 콤비 (도로 쪽 창)
+    "26": [("17", (0.5, 0.5))],                       # 쉬폰 사이로 드는 햇빛
+    "27": [("29", (0.5, 0.5))],                       # 바닥 가까이 맞춘 쉬폰 기장
 }
 
 # 메인 슬라이드 · 페이지 배경 (원본 번호, focus)
@@ -82,6 +133,7 @@ HERO = {
 PRODUCT = {
     "linen": ("02", (0.45, 0.5)), "chiffon": ("06", (0.55, 0.5)), "blackout": ("04", (0.7, 0.5)),
     "combi": ("16", (0.6, 0.5)), "roll": ("03", (0.5, 0.5)),
+    "wood": ("19", (0.15, 0.5)), "honeycomb": ("25", (0.5, 0.4)),
 }
 
 ABOUT = {"about-01": ("10", (0.35, 0.5)), "about-02": ("14", (0.5, 0.5))}
