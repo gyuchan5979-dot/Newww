@@ -27,10 +27,10 @@
    ├ 광명 7개: 광명 전체(본거지) · 철산 · 하안 · 소하 · 광명뉴타운(광명동) · 광명역(일직동) · 학온(노온사 · 가학 · 옥길)
    └ 광명과 맞닿은 9개: 구로 · 금천 · 영등포 · 양천 · 강서 · 관악 · 시흥 · 안양 · 부천
 /areas.html                 시공 지역 목록 (그 밖의 서울 · 경기 · 인천은 글로만 표시)
-/blog.html, blog-N-xxx.html 매거진 10편
+/blog.html, blog-N-xxx.html 매거진 12편
 /gallery.html               시공사례 (사례가 생길 때까지 검색 제외)
 /products.html              제품 안내 (#linen #chiffon #blackout #combi #wood #honeycomb #roll #motor)
-/about.html  /faq.html  /inquiry.html  /thanks.html
+/about.html  /faq.html  /inquiry.html  /thanks.html  /404.html
 /css/  /js/config.js(★연락처)  /js/includes.js(헤더 · 푸터)  /js/main.js
 /sitemap.xml  /rss.xml  /robots.txt  /.htaccess  /naver-index-urls.txt
 /_build/                    페이지 생성기 (업로드 불필요)

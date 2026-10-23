@@ -12,6 +12,9 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://gmcurtain.co.kr%{REQUEST_URI} [L,R=301]
 
+# 없는 주소로 들어오면 안내 페이지
+ErrorDocument 404 /404.html
+
 # 생성기 폴더는 외부에서 볼 수 없게
 RewriteRule ^_build/ - [F,L]
 

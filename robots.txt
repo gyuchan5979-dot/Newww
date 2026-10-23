@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /thanks.html
+Disallow: /404.html
 Disallow: /_build/
 
 Sitemap: https://gmcurtain.co.kr/sitemap.xml

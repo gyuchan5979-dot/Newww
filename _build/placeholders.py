@@ -79,19 +79,20 @@ def placeholder(rel, size, label, tone):
     f_label = ImageFont.truetype(KO, int(base * 0.045 * scale))
     f_small = ImageFont.truetype(KO, int(base * 0.026 * scale))
     f_brand = ImageFont.truetype(SERIF, int(base * 0.03))
-    lines = [(label, f_label, (255, 255, 255)),
-             (f"images/{rel}", f_small, (230, 226, 218)),
-             (f"권장 {w}×{h} · 같은 파일명으로 덮어쓰기", f_small, (210, 205, 196))]
+    # 글씨는 은은하게 (사진 위에 제목이 올라가는 페이지가 많아서)
+    lines = [(label, f_label, (205, 200, 188)),
+             (f"images/{rel}", f_small, (170, 165, 154)),
+             (f"권장 {w}×{h} · 같은 파일명으로 덮어쓰기", f_small, (160, 155, 145))]
     total = sum(d.textbbox((0, 0), t, font=f)[3] for t, f, _ in lines) + base * 0.05
     is_hero = rel.startswith("hero/")
-    y = h * 0.16 if is_hero else (h - total) / 2      # 히어로는 제목과 겹치지 않게 오른쪽 위
+    y = h * 0.16 if is_hero else h * 0.70 - total / 2   # 히어로는 오른쪽 위, 나머지는 아래쪽
     for t, f, c in lines:
         bw = d.textlength(t, font=f)
-        x = w - bw - w * 0.06 if is_hero else (w - bw) / 2
+        x = w - bw - w * 0.1 if is_hero else (w - bw) / 2
         d.text((x, y), t, font=f, fill=c)
         y += d.textbbox((0, 0), t, font=f)[3] + base * 0.025
     brand = "GWANGMYEONG CURTAIN · PLACEHOLDER"
-    d.text(((w - d.textlength(brand, font=f_brand)) / 2, h - base * 0.09), brand, font=f_brand, fill=AMBER)
+    d.text(((w - d.textlength(brand, font=f_brand)) / 2, h - base * 0.09), brand, font=f_brand, fill=(150, 120, 80))
     img.save(path, "JPEG", quality=72, optimize=True, progressive=True)
     return True
 

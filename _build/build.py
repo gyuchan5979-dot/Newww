@@ -424,7 +424,7 @@ PRODUCT_DETAIL = {
     "linen": ("굵은 실로 짠 린넨은 햇빛이 결 사이로 한 번 걸러져 들어옵니다. 같은 베이지라도 린넨으로 하면 빛이 닿았을 때 따뜻한 기운이 돌아, 거실 겉커튼으로 가장 많이 권하는 원단이에요. 자연 섬유가 섞인 원단은 걸어 두면 조금 늘어나서 기장을 맞출 때 그만큼 계산합니다.",
               [("이런 집에", "거실 분위기를 부드럽게 바꾸고 싶은 집"), ("잘 맞는 곳", "거실, 안방, 남향 창"), ("같이 쓰면", "쉬폰 속커튼, 웨이브 주름"), ("관리", "원단마다 물세탁 · 드라이 여부가 달라 상담 때 안내")], "blog-4-curtain-length.html"),
     "chiffon": ("얇게 비치는 쉬폰은 낮에 커튼을 닫고도 집이 어두워지지 않게 해 줍니다. 앞 동과 마주 보는 거실이나 1 · 2층 저층 집에서 특히 쓸모가 커요. 고층 통창에서는 바깥 풍경을 흐릿하게 남겨 두는 역할을 합니다.",
-                [("이런 집에", "앞 동 시선이 신경 쓰이는 집, 저층"), ("잘 맞는 곳", "거실, 이중 커튼의 속커튼, 통창"), ("같이 쓰면", "린넨 · 암막 겉커튼"), ("관리", "가벼워서 세탁기 울 코스로 관리 가능한 원단이 많음")], "blog-3-highrise-window.html"),
+                [("이런 집에", "앞 동 시선이 신경 쓰이는 집, 저층"), ("잘 맞는 곳", "거실, 이중 커튼의 속커튼, 통창"), ("같이 쓰면", "린넨 · 암막 겉커튼"), ("관리", "가벼워서 세탁기 울 코스로 관리 가능한 원단이 많음")], "blog-12-curtain-care.html"),
     "blackout": ("단지 가로등과 새벽빛을 막아 잠자는 방을 어둡게 만들어 줍니다. 원단보다 중요한 건 빛이 새는 틈을 줄이는 설치라서, 레일을 창보다 넓게 달고 기장은 바닥 가까이 맞춥니다.",
                  [("이런 집에", "동향 침실, 단지 조명이 밝은 집, 교대 근무"), ("잘 맞는 곳", "안방, 아이방, 홈시어터"), ("같이 쓰면", "쉬폰(이중 레일), 암막 롤스크린"), ("관리", "코팅 암막은 건조기 사용을 피하기")], "blog-5-blackout-guide.html"),
     "combi": ("망사와 막힌 원단이 줄무늬로 번갈아 있어 줄 하나로 밝기를 바꿉니다. 깔끔하고 가격 부담이 적어 새 아파트 입주 때 방 전체를 콤비로 맞추는 경우가 많아요.",
@@ -432,7 +432,7 @@ PRODUCT_DETAIL = {
     "wood": ("나무 슬랫의 각도를 돌려 빛이 들어오는 방향을 바꿀 수 있습니다. 위로 기울이면 빛이 천장으로 튕겨 방은 밝고 눈부심은 줄어서, 책상이나 TV가 창 가까이 있는 방에 잘 맞아요.",
              [("이런 집에", "공부방 · 재택근무 방, 원목 가구가 많은 집"), ("잘 맞는 곳", "서재, 아이 공부방, 거실, 카페"), ("같이 쓰면", "양옆 장식용 커튼"), ("관리", "마른 천으로 닦기, 물기 많은 곳은 피하기")], "blog-6-blind-compare.html"),
     "honeycomb": ("단면이 벌집 모양이라 원단 속에 공기층이 생깁니다. 겨울에 창가 찬 기운이 신경 쓰이는 방에 좋고, 위아래로 따로 여닫을 수 있어 아래만 가리고 위로 하늘을 볼 수도 있어요.",
-                  [("이런 집에", "산 쪽 창, 겨울에 창가가 추운 집"), ("잘 맞는 곳", "침실, 베란다 창, 북향 방"), ("같이 쓰면", "겉커튼(겨울 단열 보강)"), ("관리", "찬바람 드라이기로 칸 속 먼지 털기")], "blog-7-window-direction.html"),
+                  [("이런 집에", "산 쪽 창, 겨울에 창가가 추운 집"), ("잘 맞는 곳", "침실, 베란다 창, 북향 방"), ("같이 쓰면", "겉커튼(겨울 단열 보강)"), ("관리", "찬바람 드라이기로 칸 속 먼지 털기")], "blog-11-winter-window.html"),
     "roll": ("원단 한 장을 말아 올리는 구조라 올렸을 때 창이 가장 깨끗하게 드러납니다. 비치는 선스크린, 빛을 막는 암막, 일반 원단 중에서 골라 쓰임을 정해요.",
              [("이런 집에", "깔끔한 창을 좋아하는 집, 원룸 · 오피스텔"), ("잘 맞는 곳", "주방, 아이방, 드레스룸, 사무실"), ("같이 쓰면", "암막 커튼(두 겹 암막)"), ("관리", "끝까지 내린 상태로 청소기")], "blog-8-no-drill.html"),
     "motor": ("손이 닿지 않는 높은 창이나 폭이 넓은 통창을 리모컨 · 벽 스위치 · 휴대폰으로 여닫습니다. 예약을 걸어 아침에 자동으로 열리게 할 수도 있어요. 커튼박스 근처에 전원이 있어야 해서, 공사 계획이 있다면 먼저 상담해 주세요.",
@@ -950,6 +950,24 @@ def build_inquiry():
                                body, crumbs=[("견적문의", "inquiry.html")]))
 
 
+def build_404():
+    body = '''    <section class="page-hero" data-hero="thanks">
+        <div class="container">
+            <h1>찾으시는 페이지가 없어요</h1>
+            <p class="lead">주소가 바뀌었거나 없어진 페이지입니다.<br>아래에서 원하시는 곳으로 이동해 보세요.</p>
+            <div class="hero-buttons">
+                <a href="index.html" class="btn btn-light">홈으로 <span class="arrow">→</span></a>
+                <a href="areas.html" class="btn btn-outline-white">시공 지역</a>
+                <a href="inquiry.html" class="btn btn-outline-white">무료 견적 신청</a>
+            </div>
+        </div>
+    </section>
+'''
+    out = page("404.html", "페이지를 찾을 수 없습니다 | 광명커튼", "요청하신 페이지를 찾을 수 없습니다.", "광명커튼", body, noindex=True)
+    # 어떤 깊이의 주소에서 보여도 CSS · 사진 · 링크가 깨지지 않게
+    write("404.html", out.replace("<head>\n", '<head>\n    <base href="/">\n', 1))
+
+
 def build_thanks():
     body = '''    <section class="page-hero" data-hero="thanks">
         <div class="container">
@@ -1038,7 +1056,7 @@ def build_meta_files():
 </rss>
 ''')
 
-    write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /thanks.html\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n")
+    write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /thanks.html\nDisallow: /404.html\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n")
 
     write(".htaccess", f'''# ============================================
 # 광명커튼 - 서버 설정 (Apache 웹호스팅용)
@@ -1053,6 +1071,9 @@ RewriteEngine On
 RewriteCond %{{HTTPS}} off [OR]
 RewriteCond %{{HTTP_HOST}} ^www\\. [NC]
 RewriteRule ^ https://{DOMAIN}%{{REQUEST_URI}} [L,R=301]
+
+# 없는 주소로 들어오면 안내 페이지
+ErrorDocument 404 /404.html
 
 # 생성기 폴더는 외부에서 볼 수 없게
 RewriteRule ^_build/ - [F,L]
@@ -1082,6 +1103,7 @@ if __name__ == "__main__":
     build_faq()
     build_inquiry()
     build_thanks()
+    build_404()
     build_includes()
     build_meta_files()
     print(f"{len(written)} files written")

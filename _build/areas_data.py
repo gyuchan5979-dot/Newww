@@ -20,7 +20,6 @@ AREAS = [
         dongs=["광명1동", "광명2동", "광명3동", "광명4동", "광명5동", "광명6동", "광명7동",
                "철산1동", "철산2동", "철산3동", "철산4동", "하안1동", "하안2동", "하안3동", "하안4동",
                "소하1동", "소하2동", "일직동", "학온동"],
-        strong=["철산1동", "하안1동", "소하1동"],
         h2="광명에 살면서<br>광명의 창을 잽니다",
         paras=[
             "광명커튼은 광명에 사는 사람이 운영합니다. 철산에서 하안까지, 소하에서 광명역까지 차로 십여 분이면 닿는 거리라 실측 약속을 잡기 쉽고, 달고 나서 손볼 일이 생겨도 그날 바로 들를 수 있어요.",
@@ -96,7 +95,7 @@ AREAS = [
             "겨울에 산바람이 닿는 창은 창가에 서면 찬 기운이 느껴집니다. 거실은 커튼으로, 방은 허니콤 블라인드로 공기층을 한 겹 더 만들어 주면 난방한 온기가 덜 빠져나가요.",
         ],
         picks=["blackout", "honeycomb", "wood"],
-        posts=["blog-5-blackout-guide", "blog-7-window-direction", "blog-6-blind-compare"],
+        posts=["blog-5-blackout-guide", "blog-11-winter-window", "blog-7-window-direction"],
         nearby=["gwangmyeong", "haan", "iljik", "hakon", "anyang", "siheung"],
         faq=[
             ("산 쪽 침실이 너무 일찍 밝아져요. 암막이면 해결될까요?",
@@ -160,7 +159,7 @@ AREAS = [
             "광명시흥 신도시가 계획된 지역과 맞닿아 있어, 앞으로 새 아파트 입주가 시작되면 가장 가까이에서 준비를 도와드릴 수 있는 곳이기도 합니다.",
         ],
         picks=["roll", "honeycomb", "motor"],
-        posts=["blog-8-no-drill", "blog-6-blind-compare", "blog-4-curtain-length"],
+        posts=["blog-11-winter-window", "blog-8-no-drill", "blog-4-curtain-length"],
         nearby=["gwangmyeong", "soha", "iljik", "newtown", "siheung", "bucheon"],
         faq=[
             ("창 크기가 다 다른 주택인데 한 번에 견적이 되나요?",
@@ -256,7 +255,7 @@ AREAS = [
             "목감은 산과 가까워 단열 문의가, 은계는 아이 키우는 집이 많아 아이방 암막 문의가 많습니다. 과림동 일대는 광명시흥 신도시와 이어지는 곳이라 앞으로 입주 준비 상담도 함께 할 예정이에요.",
         ],
         picks=["honeycomb", "blackout", "combi"],
-        posts=["blog-5-blackout-guide", "blog-6-blind-compare"],
+        posts=["blog-11-winter-window", "blog-5-blackout-guide"],
         nearby=["gwangmyeong", "hakon", "soha", "anyang", "bucheon"],
     ),
     dict(
@@ -282,7 +281,7 @@ AREAS = [
             "옥길 · 범박 단지는 입주 몇 년 차 집이 많아 처음 단 기본 블라인드를 우드나 허니콤으로 바꾸는 상담이 많고, 중동 · 상동 신도시는 오래된 커튼을 통째로 교체하는 경우가 많습니다.",
         ],
         picks=["wood", "honeycomb", "linen"],
-        posts=["blog-6-blind-compare", "blog-10-quote-check"],
+        posts=["blog-6-blind-compare", "blog-12-curtain-care"],
         nearby=["gwangmyeong", "newtown", "hakon", "guro", "siheung"],
     ),
 ]
