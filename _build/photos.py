@@ -145,10 +145,11 @@ CASE_PHOTOS = {
 
 # 메인 슬라이드 · 페이지 배경 (원본 번호, focus)
 HERO = {
-    "hero-01": ("11", (0.5, 0.55)), "hero-02": ("04", (0.5, 0.5)), "hero-03": ("16", (0.5, 0.5)),
-    "hero-gallery": ("07", (0.5, 0.4)), "hero-products": ("06", (0.5, 0.5)), "hero-areas": ("09", (0.5, 0.45)),
-    "hero-blog": ("12", (0.5, 0.4)), "hero-about": ("10", (0.5, 0.5)), "hero-faq": ("05", (0.5, 0.4)),
-    "hero-inquiry": ("02", (0.5, 0.4)), "hero-cta": ("03", (0.5, 0.5)),
+    # 한 화면에 같은 사진이 두 번 나오지 않도록 제품 · 매거진 · 브랜드 사진과 겹치지 않게 고름
+    "hero-01": ("11", (0.5, 0.55)), "hero-02": ("38", (0.5, 0.5)), "hero-03": ("41", (0.5, 0.5)),
+    "hero-gallery": ("40", (0.5, 0.4)), "hero-products": ("37", (0.5, 0.5)), "hero-areas": ("09", (0.5, 0.45)),
+    "hero-blog": ("12", (0.5, 0.4)), "hero-about": ("35", (0.5, 0.5)), "hero-faq": ("05", (0.5, 0.4)),
+    "hero-inquiry": ("02", (0.5, 0.4)), "hero-cta": ("22", (0.5, 0.5)),
 }
 
 # 제품 사진 (세로 3:4). 사진이 없는 제품은 자리표시 그대로 둠
@@ -159,6 +160,22 @@ PRODUCT = {
 }
 
 ABOUT = {"about-01": ("10", (0.35, 0.5)), "about-02": ("14", (0.5, 0.5))}
+
+# 매거진 대표 사진 (글마다 다른 사진, 3:2)
+BLOG = {
+    "blog-1-newtown-move-in": ("44", (0.5, 0.5)),
+    "blog-2-old-apt-replace": ("13", (0.5, 0.5)),
+    "blog-3-highrise-window": ("18", (0.5, 0.4)),
+    "blog-4-curtain-length": ("29", (0.5, 0.6)),
+    "blog-5-blackout-guide": ("33", (0.5, 0.5)),
+    "blog-6-blind-compare": ("45", (0.5, 0.5)),
+    "blog-7-window-direction": ("34", (0.5, 0.5)),
+    "blog-8-no-drill": ("46", (0.5, 0.4)),
+    "blog-9-choose-gwangmyeong": ("30", (0.5, 0.5)),
+    "blog-10-quote-check": ("24", (0.5, 0.4)),
+    "blog-11-winter-window": ("26", (0.5, 0.5)),
+    "blog-12-curtain-care": ("27", (0.5, 0.4)),
+}
 
 
 if __name__ == "__main__":
@@ -181,6 +198,8 @@ if __name__ == "__main__":
         save(fit(src(n), 16 / 9, focus=focus), f"hero/{name}.jpg", (1920, 1080), quality=78)
     for name, (n, focus) in PRODUCT.items():
         save(fit(src(n), 3 / 4, focus=focus), f"products/{name}.jpg", (900, 1200))
+    for name, (n, focus) in BLOG.items():
+        save(fit(src(n), 3 / 2, focus=focus), f"blog/{name}.jpg", (1200, 800))
     for name, (n, focus) in ABOUT.items():
         save(fit(src(n), 4 / 5, focus=focus), f"about/{name}.jpg", (1000, 1250))
     print("photos written")

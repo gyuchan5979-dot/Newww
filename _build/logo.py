@@ -90,6 +90,31 @@ def logo_full():
     return img
 
 
+def product_tile(title, sub, size=(900, 1200)):
+    """실제 사진이 아직 없는 제품 칸을 채우는 브랜드 이미지 (로고 + 제품명)"""
+    W, H = size
+    img = Image.new("RGB", size, INK)
+    d = ImageDraw.Draw(img)
+    for y in range(H):   # 위는 조금 밝게
+        t = y / H
+        c = tuple(int(INK[k] + (12 if k else 8) * (1 - t)) for k in range(3))
+        d.line([(0, y), (W, y)], fill=c)
+    # 커튼 주름 느낌의 세로 줄
+    for x in range(60, W, 70):
+        d.line([(x, 0), (x, H)], fill=(40, 56, 50), width=2)
+    m = mark(360, bg=False)
+    img.paste(m, ((W - 360) // 2, 260), m)
+    ko = font("GowunBatang-Bold.ttf", 64)
+    small = font("GowunBatang-Bold.ttf", 30)
+    en = font("Marcellus-Regular.ttf", 30, "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf")
+    d.line([((W - 80) // 2, 690), ((W + 80) // 2, 690)], fill=AMBER, width=3)
+    d.text(((W - d.textlength(title, font=ko)) / 2, 730), title, font=ko, fill=PAPER)
+    d.text(((W - d.textlength(sub, font=small)) / 2, 840), sub, font=small, fill=(196, 190, 176))
+    e = "G W A N G M Y E O N G   C U R T A I N"
+    d.text(((W - d.textlength(e, font=en)) / 2, H - 120), e, font=en, fill=AMBER)
+    return img
+
+
 if __name__ == "__main__":
     icon = mark(512)
     save(icon, "brand/logo-icon.png")
@@ -105,4 +130,6 @@ if __name__ == "__main__":
     f2.thumbnail((560, 560), Image.LANCZOS)
     og.paste(f2, ((1200 - f2.width) // 2, (630 - f2.height) // 2), f2)
     save(og, "og-image.jpg", "JPEG", quality=90)
+    # 실제 사진이 생기면 photos.py 의 PRODUCT 에 넣으면 그 사진으로 덮어씀
+    save(product_tile("전동 커튼 · 블라인드", "리모컨 하나로 여닫는 높은 창 · 넓은 통창"), "products/motor.jpg", "JPEG", quality=88)
     print("logo images written")

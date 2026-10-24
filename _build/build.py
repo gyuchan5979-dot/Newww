@@ -10,9 +10,6 @@ from common import (SITE, DOMAIN, BRAND, BRAND_EN, PHONE, TODAY, VER, PRODUCTS, 
                     page, business_ld, faq_ld, product_card)
 from areas_data import AREAS, GROUPS, OTHER_AREAS, BY_SLUG as AREA
 from posts_data import POSTS, BY_SLUG as POST
-from photos import PRODUCT as _PHOTO_PRODUCT
-
-PHOTO_PRODUCTS = set(_PHOTO_PRODUCT)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 written = []
@@ -234,7 +231,7 @@ def case_card(c, cls="case-card", extra=""):
 
 def post_card(p):
     return f'''                <a href="{p["slug"]}.html" class="post-card">
-                    <div class="post-img"><img src="{v('images/products/' + p['img'] + '.jpg')}" alt="{esc(p["title"])}" loading="lazy"></div>
+                    <div class="post-img"><img src="{v('images/blog/' + p['slug'] + '.jpg')}" alt="{esc(p["title"])}" loading="lazy"></div>
                     <span class="post-cat">{p["cat"]}</span>
                     <h3>{p["title"]}</h3>
                     <p>{p["desc"]}</p>
@@ -297,7 +294,7 @@ def build_index():
 
     cases = ""
     if CASES:
-        picks = [CASE[n] for n in ("01", "03", "08", "13", "02")]
+        picks = [CASE[n] for n in ("19", "28", "33", "21", "29")]   # 메인 슬라이드 · 제품 사진과 겹치지 않는 사례
         cards = "".join(case_card(c, extra=(" wide reveal" if i == 0 else " reveal")) for i, c in enumerate(picks))
         cases = f'''    <!-- ===== 시공사례 ===== -->
     <section class="section">
@@ -708,6 +705,13 @@ LOCAL_LEADS = [
 ]
 
 
+AREA_CASE = {
+    "gwangmyeong": "36", "cheolsan": "23", "haan": "11", "soha": "28", "newtown": "30", "iljik": "21",
+    "hakon": "09", "guro": "20", "geumcheon": "25", "yeongdeungpo": "32", "yangcheon": "24",
+    "gangseo": "35", "gwanak": "38", "siheung": "29", "anyang": "34", "bucheon": "16",
+}
+
+
 def build_area(a, idx):
     f = area_file(a)
     name, full = a["name"], a["full"]
@@ -737,8 +741,9 @@ def build_area(a, idx):
     reads = " · ".join(f'<a href="{s}.html">{POST[s]["title"].split(" — ")[0]}</a>' for s in a["posts"])
     pick_cards = "".join(product_card(k) for k in a["picks"])
     nearby = "".join(f'                <a href="{area_file(AREA[s])}">{AREA[s]["name"]}</a>\n' for s in a["nearby"])
-    # 대표 사진: 실제 사진이 있는 제품 중 첫 번째 (photos.py 의 PRODUCT 에 있는 제품)
-    img = next((k for k in a["picks"] if k in PHOTO_PRODUCTS), "chiffon")
+    # 대표 사진: 지역마다 다른 시공사례 사진 (아래 추천 제품 카드와 겹치지 않게)
+    case = CASE[AREA_CASE[a["slug"]]]
+    img = f"images/cases/case-{case['no']}.jpg"
 
     faq_html, lds = "", [business_ld(name=f"{BRAND} - {full}", url=f"{SITE}/{f}",
                                      area={"@type": "Place", "name": full},
@@ -791,7 +796,7 @@ def build_area(a, idx):
 
     <section class="section">
         <div class="container split">
-            <div class="split-img reveal"><img src="{v('images/products/' + img + '.jpg')}" alt="{full} {PRODUCTS[img]['name']}" loading="lazy"></div>
+            <div class="split-img reveal"><a href="case-{case['no']}.html"><img src="{v(img)}" alt="{case['space']} {case['product']} 시공 사진" loading="lazy"></a></div>
             <div class="split-text prose reveal d1">
                 <p class="section-tag">LOCAL NOTE</p>
                 <h2>{a["h2"]}</h2>
@@ -846,7 +851,7 @@ def build_area(a, idx):
     </section>
 '''
     write(f, page(f, title, desc, kw, body, crumbs=[("시공지역", "areas.html"), (plain, f)],
-                  og_image=f"images/products/{img}.jpg", lds=lds))
+                  og_image=img, lds=lds))
 
 
 # ---------------------------------------------------------------
@@ -876,7 +881,7 @@ def build_blog():
     for i, p in enumerate(POSTS):
         others = [POSTS[(i + k) % len(POSTS)] for k in (1, 2, 3)]
         more = "".join(post_card(o) for o in others)
-        body = f'''    <section class="page-hero is-short" data-hero="post" data-hero-img="{v('images/products/' + p['img'] + '.jpg')}" data-crumb="{p["cat"]}">
+        body = f'''    <section class="page-hero is-short" data-hero="post" data-hero-img="{v('images/blog/' + p['slug'] + '.jpg')}" data-crumb="{p["cat"]}">
         <div class="container">
             <h1>{p["title"]}</h1>
             <div class="tag-row"><span class="tag">{p["cat"]}</span><span class="tag">{date_dot(TODAY)}</span></div>
@@ -905,7 +910,7 @@ def build_blog():
         ld = {
             "@context": "https://schema.org", "@type": "Article",
             "headline": p["title"], "description": p["desc"],
-            "image": f"{SITE}/{v('images/products/' + p['img'] + '.jpg')}",
+            "image": f"{SITE}/{v('images/blog/' + p['slug'] + '.jpg')}",
             "datePublished": TODAY, "dateModified": TODAY,
             "author": {"@type": "Organization", "name": BRAND, "url": SITE + "/"},
             "publisher": {"@type": "Organization", "name": BRAND,
@@ -914,7 +919,7 @@ def build_blog():
         }
         write(f"{p['slug']}.html", page(f"{p['slug']}.html", f"{p['title']} | 광명커튼", p["desc"], p["kw"], body,
                                         crumbs=[("매거진", "blog.html"), (p["title"], f"{p['slug']}.html")],
-                                        og_image=f"images/products/{p['img']}.jpg", og_type="article", lds=[ld]))
+                                        og_image=f"images/blog/{p['slug']}.jpg", og_type="article", lds=[ld]))
 
 
 # ---------------------------------------------------------------
